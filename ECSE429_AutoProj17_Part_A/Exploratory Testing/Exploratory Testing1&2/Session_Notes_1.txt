@@ -1,0 +1,52 @@
+CHARTER
+-----------------------------------------------
+Identify capabilities and areas of potential instability of the “rest api todo list manager”.
+Identify documented and undocumented “rest api todo list manager”capabilities.
+
+
+BUILD
+-----------------------------------------------
+runTodoManagerR - 1.5.5
+
+
+AREA
+-----------------------------------------------
+Typical Scenarios - Main functions and capabilites
+
+
+ENVIRONMENT
+-----------------------------------------------
+MacOS 11
+Screen resolution: 2880*1800
+
+TESTER
+-----------------------------------------------
+Weige Qian weige.qian@mail.mcgill.ca 260763075
+Erdong Luo erdong.luo@mail.mcgill.ca 260778475
+
+START
+-----------------------------------------------
+
+21/10/2020 7:00pm-7:45pm
+
+TEST NOTES
+-----------------------------------------------
+7:00 PM 10/21/2020 start the server successfully with java -jar runTodoManagerRestAPI-1.5.5.jar
+7:00 PM 10/21/2020 Check the web page on Safari brower by typing url http://localhost:4567/ (RATLM_S1_Screen_2.png)
+7:01 PM 10/21/2020 click home button,just refresh page
+7:01 PM 10/21/2020 click entitie explorer, show 3 bullet points with button -todo, project,category (RATLM_S1_Screen_3.png)
+7:02 PM 10/21/2020 click todo, display a table with 2 todo object (RATLM_S1_Screen_4.png)
+7:02 PM 10/21/2020 click project,display a table with 1 project object (RATLM_S1_Screen_5.png)
+7:03 PM 10/21/2020 click category, display a table with 2 category object (RATLM_S1_Screen_6.png)
+7:04 PM 10/21/2020 use Postman, send Get request:http://localhost:4567/todos , receive json response successfully (RATLM_S1_Screen_7.png) (RATLM_S1_Screen_8.png)
+7:09 PM 10/21/2020 use Postman, send Post request:http://localhost:4567/todos with a json object contain id 3, receive error message "Invalid Creation: Failed Validation: Not allowed to create with id" (RATLM_S1_Screen_9.png)
+7:13 PM 10/21/2020 use Postman, send Post request:http://localhost:4567/todos with a json object with correct syntax with category and task, receive correct response with id 4 (RATLM_S1_Screen_10.png) (RATLM_S1_Screen_11.png)
+7:15 PM 10/21/2020 use Postman, send Post request:http://localhost:4567/todos with a json object with str type donestatus "false", receive error message "Failed Validation: doneStatus should be BOOLEAN"
+7:19 PM 10/21/2020 use Postman, send Post request:http://localhost:4567/todos with a json object with correct syntax with fake category (wrong category id), receive error message ""Could not find field: categories"" (RATLM_S1_Screen_12.png)
+7:20 PM 10/21/2020 use Postman, send Get request:http://localhost:4567/projects, receive json reponse successfully (RATLM_S1_Screen_13.png)
+7:21 PM 10/21/2020 use Postman, send Post request:http://localhost:4567/projects with a json object with correct syntax,receive correct respone with id 4 (RATLM_S1_Screen_14.png)
+7:30 PM 10/21/2020 use Postman, send Get request:http://localhost:4567/categories, receive json reponse successfully (RATLM_S1_Screen_15.png)
+7:35 PM 10/21/2020 use Postman, send Post request:http://localhost:4567/categories with a json object with correct syntax, receive correct response with id 3; (RATLM_S1_Screen_16.png)
+7:39 PM 10/21/2020 use Postman, send Delete request:http://localhost:4567/categories/4, receive no response, check the website, the item is deleted (RATLM_S1_Screen_17.png)
+7:39 PM 10/21/2020 use Postman, send Delete request:http://localhost:4567/projects/1/tasks/1, receive no response,check the website, the task item is deleted (RATLM_S1_Screen_18.png)
+7:45 PM 10/21/2020 use Postman, send Delete request:http://localhost:4567/projects/4, receive no response,check the website, the task item is deleted (RATLM_S1_Screen_19.png)

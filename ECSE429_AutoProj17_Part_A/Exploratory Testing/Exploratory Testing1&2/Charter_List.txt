@@ -1,0 +1,7 @@
+1. Identify capabilities and areas of potential instability of the “rest api todo list manager”.
+
+2. Identify documented and undocumented “rest api todo list manager”capabilities.
+
+3. For eachcapability create a script or small program to demonstrate the capability.
+
+4. Exercise each capability identified with data typical to the intended use of the application.

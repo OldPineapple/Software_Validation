@@ -1,0 +1,16 @@
+Summary of session findings:
+• We could a relation between project and todo with a post data {'tasks':['id':'1']} in POST method of API '/projects/1'
+• We could not add a id in the post data in POST method of API '/todos'
+• when use POST method, we only need to write data field we want to change in post data
+• we could not post string formed boolean value, when we write the boolean field in the post data.
+• category do not show the relation in his data item
+• head method return the result of get method withour response body
+• project title is unnecessary, the other two is necessary
+• when post a new item correctly, the response body contain the data information with item
+
+List of concerns identified in session:
+•have not got any concerns
+
+List of new testing ideas identified in session:
+•try to find difference between PUT method and post method
+•try to use differnet data type in the string type field, like title, description

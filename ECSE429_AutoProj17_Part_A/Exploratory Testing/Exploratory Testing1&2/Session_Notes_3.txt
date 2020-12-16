@@ -1,0 +1,73 @@
+CHARTER
+-----------------------------------------------
+Identify capabilities and areas of potential instability of the “rest api todo list manager”.
+Identify documented and undocumented “rest api todo list manager”capabilities.
+
+
+BUILD
+-----------------------------------------------
+runTodoManagerR - 1.5.5
+
+
+AREA
+-----------------------------------------------
+Typical Scenarios - Main functions and capabilites
+
+
+ENVIRONMENT
+-----------------------------------------------
+Windows 10
+Screen resolution: 1920x1080
+
+
+START
+-----------------------------------------------
+12:12 PM 10/24/2020
+
+
+OTHER DATA
+-----------------------------------------------
+Written text attachement
+image of result
+
+
+TESTER
+-----------------------------------------------
+Weige Qian weige.qian@mail.mcgill.ca 260763075
+Erdong Luo erdong.luo@mail.mcgill.ca 260778475
+
+TASK BREAKDOWN
+-----------------------------------------------
+
+
+#DURATION
+30 minutes
+
+
+TEST NOTES
+-----------------------------------------------
+
+
+
+12:20 PM 10/24/2020 use Restful Client, send GET request:http://localhost:4567/todos/1/taskof receive json response successfully
+12:23 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/todos/2/taskof with correct syntax, receive json reponse successfully with 201 Created
+12:27 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/todos/2/taskof with empty id, it will create a default project automatically and add the relationship (p8.png)
+12:28 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/todos/3/taskof with an id, but todo with id=3 doesn't exist. it send back an error "errorMessages": [  "Could not find parent thing for relationship todos/3/tasksof"] (p9.png) (p10.png)
+12:31 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/todos/2/taskof with an task id that doesn't exist. It returns an error message "errorMessages": [  "Could not find thing matching value for id"] (p11.png)
+12:31 PM 10/24/2020 restart server
+12:32 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/projects/1 with the correct syntax, it gets a correct response. 
+12:32 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/projects/2 with a wrong syntax in the body. It received a 400 Bad Request.
+12:35 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/projects/2 with a correct syntax. But project with id=2 doesn't exist. It received "No such project entity instance with GUID or ID 2 found"
+12:37 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/categories/1 with a correct syntax. It receives a correct response. 
+12:40 PM 10/24/2020 use Restful Client, send PUT request:http://localhost:4567/projects/2 with only the title. It will renew the title and set all other values to default. (p12.png)
+12:42 PM 10/24/2020 use Restful Client, send POST request:http://localhost:4567/categories/1/todos with correct syntax. It receives 201 Created.
+12:43 PM 10/24/2020 use Restful Client, send GET request:http://localhost:4567/categories/1/todos It receives a correct response. (p13.png)
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+Summary of session findings:
+• We learnt that for /:id commands, we did not need to include ':' sign in the command.
+• We learnt that /todos/:id was a more specific version of /todos.
+• We learnt that todos had relation with taskof.
+• We learnt that todos had relation with categories.
+• We learnt that projects had relation with categories.
+• We learnt that projects had relation with tasks.
+• We learnt that when we called /shutdown, the server was shutdown so we would get error when we use GET. 
+• We learnt that some functions were not behave as documented, but they might be other unducumented capabilities.
+• We learnt that not all the errors found were actual bugs, they needed further detailed tests to check again.
+
+List of concerns identified in session:
+• Several errors were met during the session, were those errors related?
+• Was any error the reason why other errors occured?
+• Would any error cause a great effect to the system?
+
+List of new testing ideas identified in session:
+• Since we just followed the sequence to test capabilities, what if we do the test in a random order?
+• Since we just used valid parameters as inputs to test capabilities, what if we use invalid inputs?
+• If we change a passed test to incorrect, will it affect other passed tests?
+• Although functions are documented, do they always perform like documented or just a coincidence?

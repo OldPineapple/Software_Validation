@@ -1,0 +1,174 @@
+CHARTER
+-----------------------------------------------
+For each capability create a script or small program to demonstrate the capability.
+Exercise each capability identidied with data typical to the intended use of the application
+
+ENVIRONMENT
+-----------------------------------------------
+Windows 10
+
+DATAFILES
+-----------------------------------------------
+runTodoManagerRestAPI-1.5.5.jar
+
+SERVER SETUP
+-----------------------------------------------
+java -jar runTodoManagerRestAPI-1.5.5.jar
+
+START
+-----------------------------------------------
+1)15:52 PM 10/21/2020
+2)21:15 PM 10/21/2020
+3)14:45 PM 10/22/2020
+
+END
+-----------------------------------------------
+1)16:35 PM 10/21/2020
+2)22:05 PM 10/21/2020
+3)15:16 PM 10/22/2020
+
+DURATION
+-----------------------------------------------
+1) 43 min
+2) 50 min
+3) 31 min
+
+TESTER
+-----------------------------------------------
+Yudong Zhou 260721223 yudong.zhou@mail.mcgill.ca
+Hanwen Wang 260778557 hanwen.wang@mail.mcgill.ca
+
+TEST NOTES
+-----------------------------------------------
+15:52 PM 10/21/2020 Start to test /todos (todos.py)
+
+15:52 PM 10/21/2020 Start writing program for GET /todos
+
+16:00 PM 10/21/2020 Todos successfully returns two instances of todo
+
+16:01 PM 10/21/2020 Start writing program for HEAD /todos
+
+16:03 PM 10/21/2020 Successfully receives a response
+
+16:04 PM 10/21/2020 Start writing program for POST /todos
+
+16:07 PM 10/21/2020 A thing is successfully added
+
+16:08 PM 10/21/2020 Switch to test /todos/:id (todosid.py)
+
+16:08 PM 10/21/2020 Start writing program for GET /todos/:id
+
+16:11 PM 10/21/2020 Orginally it has index 1 and 2 inside but they both failed because nothing is returned
+
+16:11 PM 10/21/2020 Start writing program for HEAD /todos/:id
+
+16:12 PM 10/21/2020 Find that we do not need to include ":" in the command, so we retest GET /todos/:id and it is working.
+
+16:13 PM 10/21/2020 The result returned is the same as the one in HEAD /todos, no matter what id is
+
+16:14 PM 10/21/2020 Start writing program for POST /todos/:id
+
+16:18 PM 10/21/2020 Restart the terminal becasue of some confusion. We searched online that PUT is used to send data to a server to create/update a resource while POST request repeatedly have side effects of creating the same resource multiple times so we resart our terminal to test whether it follows the rule we searched or not.
+
+16:19 PM 10/21/2020 Retest POST /todos/:id
+
+16:19 PM 10/21/2020 Amend the instance successfully
+
+16:20 PM 10/21/2020 Start writing program for PUT /todos/:id
+
+16:21 PM 10/21/2020 Amend the instance successfully, do the same task as POST /todos/:id
+
+16:22 PM 10/21/2020 Start writing program for DELETE /todos/:id
+
+16:25 PM 10/21/2020 Delete works but there is not response for this command
+
+16:26 PM 10/21/2020 Switch to test /todos/:id/tasksof (todosidtasksof.py)
+
+16:27 PM 10/21/2020 Start writing program for GET /todos/:id/tasksof
+
+16:29 PM 10/21/2020 This command successfully returns some information
+
+16:29 PM 10/21/2020 Start writing program for HEAD /todos/:id/tasksof
+
+16:31 PM 10/21/2020 Successfully receives a response
+
+16:31 PM 10/21/2020 Start writing program for POST /todos/:id/tasksof
+
+16:34 PM 10/21/2020 This command successfully create an instance called taskof
+
+16:35 PM 10/21/2020 Stops a while to take the tutorial
+-----------------------------------------------
+21:15 PM 10/21/2020 Switch to test /todos/:id/tasksof/:id (todosidtasksofid.py)
+
+21:17 PM 10/21/2020 Start writing program for DELETE /todos/:id/tasksof/:id
+
+21:21 PM 10/21/2020 This function is not working. The relationship is not deleted.
+
+21:21 PM 10/21/2020 Checking the next testing task
+
+21:26 PM 10/21/2020 Switch to test /todos/:id/categories/:id (todosidcategoriesid.py)
+
+21:26 PM 10/21/2020 Start writing program for DELETE /todos/:id/categories/:id
+
+21:26 PM 10/21/2020 This function works. Category is successfully deleted.
+
+21:26 PM 10/21/2020 Checking the next testing task
+
+21:29 PM 10/21/2020 Switch to test /projects/:id/categories (projectsidcategories.py)
+
+21:29 PM 10/21/2020 Start writing programs for GET/HEAD/POST /projects/:id/categories
+
+21:42 PM 10/21/2020 For GET, nothing is gained. For HEAD, successfully receives a response. For POST, a duplicated id with incomplete information is added to the todo list.
+
+21:44 PM 10/21/2020 Switch to test /projects/:id/categories/:id (projectsidcategoriesid.py)
+
+21:44 PM 10/21/2020 Start writing program for DELETE /projects/:id/categories/:id
+
+21:48 PM 10/21/2020 Error message appears. Todo list does not change.
+
+21:50 PM 10/21/2020 Switch to test /projects/:id/tasks (projectsidtasks.py)
+
+21:50 PM 10/21/2020 Start writing programs for GET/HEAD/POST /projects/:id/tasks
+
+22:05 PM 10/21/2020 For GET, this function is working. For HEAD, successfully receives a response. For POST, we create a new todo instance and connect it with the project, then error message occurs and the relationship is not created.
+-----------------------------------------------
+14:45 PM 10/22/2020 Switch to test /categories/:id/todos/:id (categoriesidtodosid.py)
+
+14:45 PM 10/22/2020 Start writing program for DELETE /categories/:id/todos/:id
+
+14:50 PM 10/22/2020 Error message appears: Could not find any instances with categories/1/todos/1
+
+14:50 PM 10/22/2020 Switch to test /categories/:id/projects (categoriesidprojects.py)
+
+14:50 PM 10/22/2020 Start writing programs for GET/HEAD/POST /categories/:id/projects
+
+15:00 PM 10/22/2020 GET and HEAD are working as expected. POST can create an instance but it could not perform as expected(what it is described), it should create a project id but it does not, it created a new project and connect it to the category.
+
+15:03 PM 10/22/2020 Switch to test /categories/:id/projects/:id (categoriesidprojectsid.py)
+
+15:03 PM 10/22/2020 Start writing program for DELETE /categories/:id/projects/:id
+
+15:11 PM 10/22/2020 Delete function works as expected.
+
+15:11 PM 10/22/2020 Switch to test /docs (docs.py)
+
+15:11 PM 10/22/2020 Start writing program for GET /http://localhost:4567/docs
+
+15:14 PM 10/22/2020 This function is working as expected.
+
+15:14 PM 10/22/2020 Switch to test /shutdown (shutdown.py)
+
+15:14 PM 10/22/2020 Start writing program for GET /shutdown
+
+15:16 PM 10/22/2020 The server successfully shutdown. But since it is shutdown, error message occurs when GET is called.
+
+POTENTIAL ERRORS
+-----------------------------------------------
+We found that the test sequence shown on http://localhost:4567/docs for us is a little bit different from each other.
+DELETE /todos/:id/tasksof/:id is not working. Since the relationship is not deleted.
+GET /projects/:id/categories is not working. Since nothing is returned.
+POST /projects/:id/categories is not working as expected. This might be an undocumented capability.
+POST /projects/:id/tasks is not working. Since the relationship is not created.
+DELETE /categories/:id/todos/:id is not working. Error meaage occurs.
+POST /categories/:id/projects is not working as expected. This might be an undocumented capability.
+/shutdown is working, but GET /shutdown will have error message since server is shutdown.

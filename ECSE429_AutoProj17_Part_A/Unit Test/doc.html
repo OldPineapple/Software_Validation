@@ -1,0 +1,414 @@
+<html><head><meta http-equiv='content-language' content='en-us'><title>API Documentation</title> <link rel='stylesheet' href='/css/default.css'></head><body><div class='content'><div class='rootmenu menu'><ul><li><a href='/gui'>Home</a></li><li><a href='/gui/entities'>Entities Explorer</a></li><li><a href='/docs'>API documentation</a></li></ul></div><h1>Todo Manager</h1>
+
+<div class='headertextblock'><p>A Simple todo manager with categories and projects.</p>
+
+<p>Will accept json by default.</p>
+<p><i>Content-Type: application/json</i></p>
+<p>Set Content-Type header to application/xml if you want to send in XML.</p>
+<p><i>Content-Type: application/xml</i></p>
+<p>You can control the returned data format by setting the Accept header</p>
+<p>You can request XML response by setting the Accept header.</p>
+<p>i.e. for XML use</p>
+<p><i>Accept: application/xml</i><br/><br/>
+</p>
+<p>You can request JSON response by setting the Accept header.</p>
+<p>i.e. for JSON use</p>
+<p><i>Accept: application/json</i><br/><br/>
+</p>
+<p>Some requests can be filtered by adding query params of fieldname=value. Where only matching items will be returned.</p>
+<p>e.g. <i>/items?size=2&status=true</i><br/><br/>
+</p>
+<p>All data lives in memory and is not persisted so the application is cleared everytime you start it. It does have some test data in here when you start</p>
+</div><h2>Model</h2>
+<h3>Things</h3>
+<h4>todo</h4>
+Fields:
+<ul>
+<table>
+<thead>
+<tr><td>Fieldname</td>
+<td>Type</td>
+<td>Validation</td>
+</tr></thead>
+<tbody>
+<tr><tr><td>id</td><td>ID</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "38"</td></tr><tr><td>title</td><td>STRING</td><td><ul><li> : can not be empty</li>
+<li>Mandatory?: true</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "e irure dolor in rep"</td></tr><tr><td>doneStatus</td><td>BOOLEAN</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "false"</td></tr><tr><td>description</td><td>STRING</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "lamco laboris nisi u"</td></tr></tbody>
+</table>
+<p>Example JSON Output from API calls</p>
+<pre class='json'>
+<code class='json'>
+{
+  "id": "38",
+  "title": "e irure dolor in rep",
+  "doneStatus": "false",
+  "description": "lamco laboris nisi u"
+}</code>
+</pre>
+<p>Example XML Output from API calls</p>
+<pre class='xml'>
+<code class='xml'>
+&lt;todo&gt;
+  &lt;doneStatus&gt;false&lt;/doneStatus&gt;
+  &lt;description&gt;lamco laboris nisi u&lt;/description&gt;
+  &lt;id&gt;38&lt;/id&gt;
+  &lt;title&gt;e irure dolor in rep&lt;/title&gt;
+&lt;/todo&gt;</code>
+</pre>
+<p>Example JSON Input to API calls</p>
+<pre class='json'>
+<code class='json'>
+{
+  "title": "e irure dolor in rep",
+  "doneStatus": "false",
+  "description": "lamco laboris nisi u"
+}</code>
+</pre>
+<p>Example XML Input to API calls</p>
+<pre class='xml'>
+<code class='xml'>
+&lt;todo&gt;
+  &lt;doneStatus&gt;false&lt;/doneStatus&gt;
+  &lt;description&gt;lamco laboris nisi u&lt;/description&gt;
+  &lt;id&gt;null&lt;/id&gt;
+  &lt;title&gt;e irure dolor in rep&lt;/title&gt;
+&lt;/todo&gt;</code>
+</pre>
+<h4>project</h4>
+Fields:
+<ul>
+<table>
+<thead>
+<tr><td>Fieldname</td>
+<td>Type</td>
+<td>Validation</td>
+</tr></thead>
+<tbody>
+<tr><tr><td>id</td><td>ID</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "58"</td></tr><tr><td>title</td><td>STRING</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "rcitation ullamco la"</td></tr><tr><td>completed</td><td>BOOLEAN</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "false"</td></tr><tr><td>active</td><td>BOOLEAN</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "true"</td></tr><tr><td>description</td><td>STRING</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "e et dolore magna al"</td></tr></tbody>
+</table>
+<p>Example JSON Output from API calls</p>
+<pre class='json'>
+<code class='json'>
+{
+  "id": "58",
+  "title": "rcitation ullamco la",
+  "completed": "false",
+  "active": "true",
+  "description": "e et dolore magna al"
+}</code>
+</pre>
+<p>Example XML Output from API calls</p>
+<pre class='xml'>
+<code class='xml'>
+&lt;project&gt;
+  &lt;active&gt;true&lt;/active&gt;
+  &lt;description&gt;e et dolore magna al&lt;/description&gt;
+  &lt;id&gt;58&lt;/id&gt;
+  &lt;completed&gt;false&lt;/completed&gt;
+  &lt;title&gt;rcitation ullamco la&lt;/title&gt;
+&lt;/project&gt;</code>
+</pre>
+<p>Example JSON Input to API calls</p>
+<pre class='json'>
+<code class='json'>
+{
+  "title": "rcitation ullamco la",
+  "completed": "false",
+  "active": "true",
+  "description": "e et dolore magna al"
+}</code>
+</pre>
+<p>Example XML Input to API calls</p>
+<pre class='xml'>
+<code class='xml'>
+&lt;project&gt;
+  &lt;active&gt;true&lt;/active&gt;
+  &lt;description&gt;e et dolore magna al&lt;/description&gt;
+  &lt;id&gt;null&lt;/id&gt;
+  &lt;completed&gt;false&lt;/completed&gt;
+  &lt;title&gt;rcitation ullamco la&lt;/title&gt;
+&lt;/project&gt;</code>
+</pre>
+<h4>category</h4>
+Fields:
+<ul>
+<table>
+<thead>
+<tr><td>Fieldname</td>
+<td>Type</td>
+<td>Validation</td>
+</tr></thead>
+<tbody>
+<tr><tr><td>id</td><td>ID</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "58"</td></tr><tr><td>title</td><td>STRING</td><td><ul><li> : can not be empty</li>
+<li>Mandatory?: true</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "elit esse cillum dol"</td></tr><tr><td>description</td><td>STRING</td><td><ul><li>Mandatory?: false</li></ul>
+</td>
+</tr><tr><td colspan='3' class='examplevalue'>Example: "quis nostrud exercia"</td></tr></tbody>
+</table>
+<p>Example JSON Output from API calls</p>
+<pre class='json'>
+<code class='json'>
+{
+  "id": "58",
+  "title": "elit esse cillum dol",
+  "description": "quis nostrud exercia"
+}</code>
+</pre>
+<p>Example XML Output from API calls</p>
+<pre class='xml'>
+<code class='xml'>
+&lt;category&gt;
+  &lt;description&gt;quis nostrud exercia&lt;/description&gt;
+  &lt;id&gt;58&lt;/id&gt;
+  &lt;title&gt;elit esse cillum dol&lt;/title&gt;
+&lt;/category&gt;</code>
+</pre>
+<p>Example JSON Input to API calls</p>
+<pre class='json'>
+<code class='json'>
+{
+  "title": "elit esse cillum dol",
+  "description": "quis nostrud exercia"
+}</code>
+</pre>
+<p>Example XML Input to API calls</p>
+<pre class='xml'>
+<code class='xml'>
+&lt;category&gt;
+  &lt;description&gt;quis nostrud exercia&lt;/description&gt;
+  &lt;id&gt;null&lt;/id&gt;
+  &lt;title&gt;elit esse cillum dol&lt;/title&gt;
+&lt;/category&gt;</code>
+</pre>
+<h3>Relationships</h3>
+<ul>
+<li>projects : category => project
+<li>categories : todo => category
+<li>todos : category => todo
+<li>tasks/tasksof : project =(tasks)=> todo / todo =(tasksof)=> project 
+</ul>
+<h2>API</h2>
+<p>The API takes body with objects using the field definitions and examples shown in the model.</p>
+<h3>End Points</h3>
+<h4 class='endpoint'>/todos</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/todos</span</p>
+<p>This endpoint can be filtered with fields as URL Query Parameters.</p>
+<p>e.g. <span class='endpoint'>http://localhost:4567/todos?title=ui%20officia%20deserunta</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /todos</strong><ul><li class='normal'>return all the instances of todo</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /todos</strong><ul><li class='normal'>headers for all the instances of todo</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /todos</strong><ul><li class='normal'>we should be able to create todo without a ID using the field values in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/todos/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/todos/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /todos/:id</strong><ul><li class='normal'>return a specific instances of todo using a id</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /todos/:id</strong><ul><li class='normal'>headers for a specific instances of todo using a id</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /todos/:id</strong><ul><li class='normal'>amend a specific instances of todo using a id with a body containing the fields to amend</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>PUT /todos/:id</strong><ul><li class='normal'>amend a specific instances of todo using a id with a body containing the fields to amend</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>DELETE /todos/:id</strong><ul><li class='normal'>delete a specific instances of todo using a id</li></ul></li>
+</ul><h4 class='endpoint'>/todos/:id/tasksof</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/todos/:id/tasksof</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /todos/:id/tasksof</strong><ul><li class='normal'>return all the project items related to todo, with given id, by the relationship named tasksof</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /todos/:id/tasksof</strong><ul><li class='normal'>headers for the project items related to todo, with given id, by the relationship named tasksof</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /todos/:id/tasksof</strong><ul><li class='normal'>create an instance of a relationship named tasksof between todo instance :id and the project instance represented by the id in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/todos/:id/tasksof/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/todos/:id/tasksof/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>DELETE /todos/:id/tasksof/:id</strong><ul><li class='normal'>delete the instance of the relationship named tasksof between todo and project using the :id</li></ul></li>
+</ul><h4 class='endpoint'>/todos/:id/categories</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/todos/:id/categories</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /todos/:id/categories</strong><ul><li class='normal'>return all the category items related to todo, with given id, by the relationship named categories</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /todos/:id/categories</strong><ul><li class='normal'>headers for the category items related to todo, with given id, by the relationship named categories</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /todos/:id/categories</strong><ul><li class='normal'>create an instance of a relationship named categories between todo instance :id and the category instance represented by the id in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/todos/:id/categories/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/todos/:id/categories/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>DELETE /todos/:id/categories/:id</strong><ul><li class='normal'>delete the instance of the relationship named categories between todo and category using the :id</li></ul></li>
+</ul><h4 class='endpoint'>/projects</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/projects</span</p>
+<p>This endpoint can be filtered with fields as URL Query Parameters.</p>
+<p>e.g. <span class='endpoint'>http://localhost:4567/projects?title=Duis%20aute%20irure%20dolo&description=aliquip%20ex%20ea%20commoa</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /projects</strong><ul><li class='normal'>return all the instances of project</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /projects</strong><ul><li class='normal'>headers for all the instances of project</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /projects</strong><ul><li class='normal'>we should be able to create project without a ID using the field values in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/projects/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/projects/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /projects/:id</strong><ul><li class='normal'>return a specific instances of project using a id</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /projects/:id</strong><ul><li class='normal'>headers for a specific instances of project using a id</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /projects/:id</strong><ul><li class='normal'>amend a specific instances of project using a id with a body containing the fields to amend</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>PUT /projects/:id</strong><ul><li class='normal'>amend a specific instances of project using a id with a body containing the fields to amend</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>DELETE /projects/:id</strong><ul><li class='normal'>delete a specific instances of project using a id</li></ul></li>
+</ul><h4 class='endpoint'>/projects/:id/categories</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/projects/:id/categories</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /projects/:id/categories</strong><ul><li class='normal'>return all the category items related to project, with given id, by the relationship named categories</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /projects/:id/categories</strong><ul><li class='normal'>headers for the category items related to project, with given id, by the relationship named categories</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /projects/:id/categories</strong><ul><li class='normal'>create an instance of a relationship named categories between project instance :id and the category instance represented by the id in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/projects/:id/categories/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/projects/:id/categories/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>DELETE /projects/:id/categories/:id</strong><ul><li class='normal'>delete the instance of the relationship named categories between project and category using the :id</li></ul></li>
+</ul><h4 class='endpoint'>/projects/:id/tasks</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/projects/:id/tasks</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /projects/:id/tasks</strong><ul><li class='normal'>return all the todo items related to project, with given id, by the relationship named tasks</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /projects/:id/tasks</strong><ul><li class='normal'>headers for the todo items related to project, with given id, by the relationship named tasks</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /projects/:id/tasks</strong><ul><li class='normal'>create an instance of a relationship named tasks between project instance :id and the todo instance represented by the id in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/projects/:id/tasks/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/projects/:id/tasks/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>DELETE /projects/:id/tasks/:id</strong><ul><li class='normal'>delete the instance of the relationship named tasks between project and todo using the :id</li></ul></li>
+</ul><h4 class='endpoint'>/categories</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/categories</span</p>
+<p>This endpoint can be filtered with fields as URL Query Parameters.</p>
+<p>e.g. <span class='endpoint'>http://localhost:4567/categories?description=t%20anim%20id%20est%20laboru&title=,%20sed%20do%20eiusmod%20tem</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /categories</strong><ul><li class='normal'>return all the instances of category</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /categories</strong><ul><li class='normal'>headers for all the instances of category</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /categories</strong><ul><li class='normal'>we should be able to create category without a ID using the field values in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/categories/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/categories/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /categories/:id</strong><ul><li class='normal'>return a specific instances of category using a id</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /categories/:id</strong><ul><li class='normal'>headers for a specific instances of category using a id</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /categories/:id</strong><ul><li class='normal'>amend a specific instances of category using a id with a body containing the fields to amend</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>PUT /categories/:id</strong><ul><li class='normal'>amend a specific instances of category using a id with a body containing the fields to amend</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>DELETE /categories/:id</strong><ul><li class='normal'>delete a specific instances of category using a id</li></ul></li>
+</ul><h4 class='endpoint'>/categories/:id/projects</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/categories/:id/projects</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /categories/:id/projects</strong><ul><li class='normal'>return all the project items related to category, with given id, by the relationship named projects</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /categories/:id/projects</strong><ul><li class='normal'>headers for the project items related to category, with given id, by the relationship named projects</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /categories/:id/projects</strong><ul><li class='normal'>create an instance of a relationship named projects between category instance :id and the project instance represented by the id in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/categories/:id/projects/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/categories/:id/projects/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>DELETE /categories/:id/projects/:id</strong><ul><li class='normal'>delete the instance of the relationship named projects between category and project using the :id</li></ul></li>
+</ul><h4 class='endpoint'>/categories/:id/todos</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/categories/:id/todos</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /categories/:id/todos</strong><ul><li class='normal'>return all the todo items related to category, with given id, by the relationship named todos</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>HEAD /categories/:id/todos</strong><ul><li class='normal'>headers for the todo items related to category, with given id, by the relationship named todos</li></ul></li>
+</ul><ul>
+<li class='endpoint'>
+<strong>POST /categories/:id/todos</strong><ul><li class='normal'>create an instance of a relationship named todos between category instance :id and the todo instance represented by the id in the body of the message</li></ul></li>
+</ul><h4 class='endpoint'>/categories/:id/todos/:id</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/categories/:id/todos/:id</span</p>
+<ul>
+<li class='endpoint'>
+<strong>DELETE /categories/:id/todos/:id</strong><ul><li class='normal'>delete the instance of the relationship named todos between category and todo using the :id</li></ul></li>
+</ul><h4>/docs</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/docs</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /http://localhost:4567/docs</strong><ul><li class='normal'>Show this documentation as HTML.</li></ul></li>
+</ul><h4>/shutdown</h4>
+<p>e.g. <span class='endpoint'>http://localhost:4567/shutdown</span</p>
+<ul>
+<li class='endpoint'>
+<strong>GET /shutdown</strong><ul><li class='normal'>Shutdown the API server</li></ul></li>
+</ul><p><a href='/docs/swagger'>[download swagger file]</a></p>
+<p>&nbsp;</p><hr/><div class='footer'><p>Thingifier version 1.5, Copyright Alan Richardson, Compendium Developments Ltd 2020 </p>
+<ul class='footerlinks'><li><a href='https://github.com/eviltester/thingifier'>Thingifier</a></li>
+<li><a href='http://eviltester.com'>EvilTester.com</a></li>
+<li><a href='https://compendiumdev.co.uk'>Compendium Developments</a></li>
+</ul></div></div></body></html>
